@@ -30,14 +30,7 @@ app.use("/api/categories", categoryRoutes);
 // Product API
 app.use("/api/products", productRoutes);
 
-// Temporary Product POST Test API
-app.post("/api/products", (req, res) => {
-    console.log("PRODUCT POST ROUTE REACHED");
 
-    res.status(200).json({
-        message: "Product POST route is working"
-    });
-});
 
 // Start server
 const startServer = async () => {
