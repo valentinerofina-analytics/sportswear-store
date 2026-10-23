@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const connectDB = require("./db");
 const categoryRoutes = require("./routes/categoryRoutes");
+const productRoutes = require("./routes/productRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,19 +14,30 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Home route
+// Home API
 app.get("/", (req, res) => {
     res.send("Sportswear Store API is running!");
 });
 
-// Test route
+// Test API
 app.get("/test", (req, res) => {
     res.send("Test route is working!");
 });
 
-// Category routes
-console.log("Category routes loaded");
+// Category API
 app.use("/api/categories", categoryRoutes);
+
+// Product API
+app.use("/api/products", productRoutes);
+
+// Temporary Product POST Test API
+app.post("/api/products", (req, res) => {
+    console.log("PRODUCT POST ROUTE REACHED");
+
+    res.status(200).json({
+        message: "Product POST route is working"
+    });
+});
 
 // Start server
 const startServer = async () => {
